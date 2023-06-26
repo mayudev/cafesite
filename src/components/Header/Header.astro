@@ -1,0 +1,53 @@
+---
+import HeaderAvatar from "./HeaderAvatar.astro";
+import HeaderNavigation from "./HeaderNavigation.astro";
+---
+
+<header>
+    <HeaderAvatar />
+    <div class="cooltext-container">
+        <span class="cooltext">Mayu</span>
+    </div>
+    <span style="flex: 1"></span>
+    <HeaderNavigation />
+</header>
+
+<style lang="scss">
+    header {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+        font-weight: 700;
+    }
+
+    .cooltext-container {
+        margin: 0 16px;
+        font-size: 1.6rem;
+    }
+
+    @media not (prefers-reduced-motion) {
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            from {
+                border-color: transparent;
+            }
+            to {
+                border-color: var(--cs-foreground);
+            }
+        }
+
+        .cooltext {
+            border-right: 0.1rem solid var(--cs-foreground);
+            width: 0;
+            animation: typing 0.2s steps(4, end) forwards, blink 0.4s alternate infinite;
+        }
+    }
+</style>

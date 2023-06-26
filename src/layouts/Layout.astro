@@ -1,4 +1,6 @@
 ---
+import Header from "../components/Header/Header.astro";
+
 export interface Props {
 	title: string;
 }
@@ -10,27 +12,61 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="container">
+			<Header />
+			<div class="content">
+				<slot />
+			</div>
+		</div>
 	</body>
 </html>
 <style is:global>
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--cs-background: linear-gradient(135deg, #1c1c2d, #a15478);
+			--cs-accent: #cea7a7;
+			--cs-primary: #f5c2e7;
+			--cs-foreground: #d9e0ee;
+		}
+	}
+
+	@media (prefers-color-scheme: light) {
+		:root {
+			--cs-background: white;
+			--cs-accent: #cea7a7;
+			--cs-primary: #f5c2e7;
+			--cs-foreground: black;
+		}
+	}
+
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		color: var(--cs-foreground);
 	}
+
 	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+		background: var(--cs-background) fixed;
+		font-family: "Iosevka", monospace;
 	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+
+	.container {
+		width: min(48rem, 95vw);
+		margin: 20vh auto 1rem auto;
+	}
+
+	.content {
+		padding: 16px;
+		background: rgb(29, 27, 29);
+		border-radius: 3px;
+	}
+
+	* {
+		box-sizing: border-box;
 	}
 </style>
