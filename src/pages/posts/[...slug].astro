@@ -23,6 +23,20 @@ const { Content } = await entry.render();
 ---
 
 <Layout title={entry.data.title}>
-    <h1>{entry.data.title}</h1>
-    <Content />
+    <article class="post">
+        <h1>{entry.data.title}</h1>
+        <div class="contents">
+            <Content class="contents" />
+        </div>
+    </article>
 </Layout>
+
+<style is:global lang="scss">
+    .contents {
+        line-height: 1.6;
+    }
+
+    a {
+        color: pink;
+    }
+</style>
