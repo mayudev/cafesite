@@ -2,20 +2,30 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ListEntry from "../components/Blog/ListEntry.astro";
+import { getUniqueTags } from "../lib/posts";
+import TagList from "../components/Blog/TagList.astro";
 
 const blogPosts = await getCollection("posts");
 
 // Sort posts from latest to oldest
 const posts = blogPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const tags = getUniqueTags(blogPosts);
 ---
 
 <Layout title="Mayu">
     <h2>Posts</h2>
     {posts.map((post) => <ListEntry data={post} />)}
+    <h3 class="tag-section">Tags</h3>
+    <TagList tags={tags} />
 </Layout>
 
 <style>
     h2 {
         margin-top: 0.5rem;
+    }
+
+    .tag-section {
+        border-left: 2px solid var(--cs-primary);
+        padding-left: 8px;
     }
 </style>

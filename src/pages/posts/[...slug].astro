@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import TagList from "../../components/Blog/TagList.astro";
 
 interface Props {
     entry: CollectionEntry<"posts">;
@@ -40,16 +41,7 @@ const pubMonth = entry.data.date.toLocaleString("en", { month: "long" });
             <Content class="contents" />
         </div>
         <h3>Tags</h3>
-        <div class="tags">
-            {
-                entry.data.tags.map((tag, i) => (
-                    <>
-                        {<a href={`/tags/${tag}`}>{tag}</a>}
-                        {i != entry.data.tags.length - 1 && ", "}
-                    </>
-                ))
-            }
-        </div>
+        <TagList tags={entry.data.tags} />
     </article>
 </Layout>
 
