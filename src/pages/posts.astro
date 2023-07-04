@@ -14,4 +14,8 @@ const posts = blogPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTi
     {posts.map((post) => <ListEntry data={post} />)}
 </Layout>
 
-<style></style>
+<style>
+    h2 {
+        margin-top: 0.5rem;
+    }
+</style>

@@ -20,18 +20,54 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const pubMonth = entry.data.date.toLocaleString("en", { month: "long" });
 ---
 
 <Layout title={entry.data.title}>
     <article class="post">
-        <h1>{entry.data.title}</h1>
+        <a class="post-back" href="/posts">{"<-"} see all posts</a>
+        <h1 class="post-title">{entry.data.title}</h1>
+        <time
+            class="post-date"
+            datetime={entry.data.date.toLocaleString()}
+            title={entry.data.date.toLocaleString()}
+        >
+            {pubMonth}
+            {entry.data.date.getDate()}, {entry.data.date.getFullYear()}
+        </time>
         <div class="contents">
             <Content class="contents" />
+        </div>
+        <h3>Tags</h3>
+        <div class="tags">
+            {
+                entry.data.tags.map((tag, i) => (
+                    <>
+                        {<a href={`/tags/${tag}`}>{tag}</a>}
+                        {i != entry.data.tags.length - 1 && ", "}
+                    </>
+                ))
+            }
         </div>
     </article>
 </Layout>
 
 <style is:global lang="scss">
+    .post-back {
+        text-decoration: none;
+    }
+
+    .post-title {
+        border-left: 2px solid var(--cs-secondary);
+        color: var(--cs-secondary);
+        padding-left: 1rem;
+    }
+
+    .post-date {
+        opacity: 0.7;
+    }
+
     .contents {
         line-height: 1.6;
     }
