@@ -1,9 +1,17 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import ListEntry from "../components/Blog/ListEntry.astro";
+
+const blogPosts = await getCollection("posts");
+
+// Sort posts from latest to oldest
+const posts = blogPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout title="Mayu">
     <h2>Posts</h2>
+    {posts.map((post) => <ListEntry data={post} />)}
 </Layout>
 
 <style></style>

@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    data: CollectionEntry<"posts">;
+}
+
+const { data: entry } = Astro.props;
+
+const slug = entry.slug;
+const data = entry.data;
+
+const pubMonth = data.date.toLocaleString("en", { month: "long" });
+---
+
+<a class="list-entry" href={`/posts/${slug}`}>
+    <h2 class="entry-title">{data.title}</h2>
+    <time
+        class="entry-date"
+        datetime={data.date.toLocaleString()}
+        title={data.date.toLocaleString()}
+    >
+        {pubMonth}
+        {data.date.getDate()}, {data.date.getFullYear()}
+    </time>
+    <div class="entry-summary">{data.summary}</div>
+</a>
+
+<style lang="scss">
+    .list-entry {
+        display: block;
+        color: inherit;
+        text-decoration: inherit;
+
+        &:hover > .entry-title {
+            border-left-width: 12px;
+            padding-right: 8px;
+        }
+    }
+    .entry-title {
+        border-left: 2px solid var(--cs-secondary);
+        color: var(--cs-secondary);
+        font-size: 1.2rem;
+        padding-left: 1rem;
+
+        transition: border-left-width 200ms ease-out;
+    }
+
+    .entry-date {
+        font-weight: 600;
+    }
+
+    .entry-summary {
+        padding: 0.5rem 0;
+    }
+</style>
