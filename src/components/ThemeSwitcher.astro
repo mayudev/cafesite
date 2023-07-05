@@ -1,0 +1,94 @@
+---
+---
+
+<div class="switcher-container">
+    <div class="switcher">
+        <button class="theme">system</button>
+        <button class="theme">light</button>
+        <button class="theme">dark</button>
+    </div>
+    <button class="fab" title="Switch theme">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="32"
+            viewBox="0 -960 960 960"
+            width="32"
+            ><path
+                d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83.667 32.167-156.667 32.166-73 87.666-127t129.834-85.166Q404-880 488.667-880 568-880 639-853.167q71 26.834 124.5 74.334t85 112.666Q880-601 880-524q0 110.333-65.333 172.5-65.333 62.166-168 62.166H572q-15 0-24.833 11.001-9.834 11-9.834 24.333 0 17.334 14.667 36.834 14.666 19.5 14.666 45.833 0 33.999-25.5 62.666Q515.666-80 480-80ZM251.333-449.334q22 0 37.667-15.666 15.666-15.667 15.666-37.667T289-540.333Q273.333-556 251.333-556t-37.666 15.667Q198-524.667 198-502.667q0 22 15.667 37.667 15.666 15.666 37.666 15.666Zm124-166.666q22 0 37.667-15.667 15.666-15.667 15.666-37.667 0-21.999-15.666-37.666-15.667-15.667-37.667-15.667T337.667-707Q322-691.333 322-669.334q0 22 15.667 37.667Q353.333-616 375.333-616Zm209.334 0q22 0 37.666-15.667Q638-647.334 638-669.334q0-21.999-15.667-37.666-15.666-15.667-37.666-15.667-22 0-37.667 15.667-15.666 15.667-15.666 37.666 0 22 15.666 37.667Q562.667-616 584.667-616ZM712-449.334q22 0 37.667-15.666 15.666-15.667 15.666-37.667t-15.666-37.666Q734-556 712-556t-37.666 15.667q-15.667 15.666-15.667 37.666 0 22 15.667 37.667Q690-449.334 712-449.334Z"
+            ></path></svg
+        >
+    </button>
+</div>
+
+<script>
+    document.querySelectorAll("button.theme").forEach((button) => {
+        button.addEventListener("click", () => {
+            const themeName = button.textContent!;
+            document.documentElement.setAttribute("data-theme", themeName);
+            localStorage.setItem("theme", themeName);
+        });
+    });
+</script>
+
+<style lang="scss">
+    .switcher-container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        justify-content: flex-end;
+        margin: 15px;
+    }
+
+    .switcher {
+        display: none;
+        background: var(--cs-content-background);
+        border: 1px solid var(--cs-primary);
+
+        width: 90px;
+    }
+
+    .theme {
+        background: inherit;
+        color: inherit;
+        font: inherit;
+        outline: none;
+        border: none;
+        display: block;
+        padding: 10px;
+        cursor: pointer;
+
+        width: 100%;
+
+        &:hover {
+            background: var(--cs-primary);
+            color: black;
+        }
+    }
+
+    .theme-active {
+        text-decoration: underline;
+    }
+
+    .switcher-container:hover > .switcher {
+        display: block;
+    }
+
+    .fab {
+        all: unset;
+
+        height: 48px;
+        width: 48px;
+        fill: var(--cs-foreground);
+
+        text-align: center;
+        vertical-align: center;
+        border-radius: 50%;
+
+        cursor: pointer;
+    }
+</style>

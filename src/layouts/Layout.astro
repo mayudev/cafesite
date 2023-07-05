@@ -1,5 +1,9 @@
 ---
 import Header from "../components/Header/Header.astro";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import "@fontsource/iosevka/400.css";
+import "@fontsource/iosevka/600.css";
+import "@fontsource/iosevka/700.css";
 
 export interface Props {
 	title: string;
@@ -37,9 +41,18 @@ const { title, description = "I'm Mayu, a hobbyist web developer." } = Astro.pro
 			<div class="content">
 				<slot />
 			</div>
+			<ThemeSwitcher />
 		</div>
 	</body>
 </html>
+
+<script>
+	const theme = localStorage.getItem("theme");
+	if (theme) {
+		document.documentElement.setAttribute("data-theme", theme);
+	}
+</script>
+
 <style lang="scss" is:global>
 	@mixin dark-theme {
 		--cs-background: linear-gradient(135deg, #1c1c2d, #a15478);
@@ -57,7 +70,7 @@ const { title, description = "I'm Mayu, a hobbyist web developer." } = Astro.pro
 		--cs-foreground: black;
 
 		--cs-accent: #a15094;
-		--cs-primary: #944590;
+		--cs-primary: #b782b5;
 		--cs-secondary: #4e8494;
 	}
 
