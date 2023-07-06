@@ -1,9 +1,74 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const links = [
+	{
+		name: "GitHub",
+		link: "https://github.com/mayudev",
+	},
+	{
+		name: "Matrix",
+		link: "https://matrix.to/#/@mayudev:matrix.org",
+	},
+	{
+		name: "Fediverse",
+		link: "https://tech.lgbt/@mayu",
+	},
+];
 ---
 
 <Layout title="Mayu">
-	<span>Hi! I'm Mayu, an aspiring web developer.</span>
+	<article>
+		<section class="about">
+			<p>
+				Hi! I'm Mayu, a 19 year old collective of trans girls interested in
+				programming, drawing, urbanism and lots of other stuff.
+			</p>
+
+			<p>
+				I tinker with pretty much anything, but primarily web development and
+				mobile applications. Self-hosting is also one of my most recent objects of
+				interest ^^!
+			</p>
+
+			<p>
+				One way or another, my favorite programming languages are TypeScript and
+				Go. I am also slowly learning Rust and Flutter/Dart.
+			</p>
+
+			<p>
+				You can talk to me in: English (proficient), Polish (native), Norwegian
+				(basic), Dutch (barely basic)
+			</p>
+			<img class="blobcat" src="/qc_trans.svg" />
+		</section>
+		<section class="links">
+			{
+				links.map((link) => (
+					<a class="link" href={link.link} target="_blank" rel="noreferrer">
+						{link.name}
+					</a>
+				))
+			}
+		</section>
+	</article>
 </Layout>
 
-<style></style>
+<style lang="scss">
+	.about {
+		border-bottom: 1px solid var(--cs-primary);
+	}
+
+	.blobcat {
+		display: block;
+		width: 32px;
+		margin: 1rem auto;
+	}
+
+	.links {
+		display: flex;
+		justify-content: space-evenly;
+
+		margin: 1rem 1rem 0;
+	}
+</style>
