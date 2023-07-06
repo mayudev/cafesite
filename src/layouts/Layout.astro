@@ -42,6 +42,13 @@ const { title, description = "I'm Mayu, a hobbyist web developer." } = Astro.pro
 				<slot />
 			</div>
 			<ThemeSwitcher />
+			<footer>
+				mayu 2023; <a
+					href="https://github.com/mayudev/cafesite"
+					target="_blank"
+					rel="noreferrer">source code</a
+				>
+			</footer>
 		</div>
 	</body>
 </html>
@@ -116,6 +123,11 @@ const { title, description = "I'm Mayu, a hobbyist web developer." } = Astro.pro
 		padding: 16px;
 		background: var(--cs-content-background);
 		border-radius: 3px;
+	}
+
+	footer {
+		text-align: center;
+		margin: 1rem;
 	}
 
 	* {
