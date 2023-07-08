@@ -1,0 +1,17 @@
+---
+interface Props {
+    title: string;
+    href: string;
+}
+
+const { title, href } = Astro.props;
+---
+
+<a class="link" href={href}>{title}</a>
+
+<style lang="scss">
+    .link {
+        color: var(--cs-secondary);
+        font-size: 1.2rem;
+    }
+</style>
